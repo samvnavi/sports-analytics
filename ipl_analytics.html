@@ -1,0 +1,81 @@
+<html>
+    <title>IPL ANALYTICS</title>
+    <H1 class = "heading">IPL ANALYTICS</H1>
+    <link rel="stylesheet" href="ipl_analytics_style.css">
+    <body class = "body">
+        <div class = "card" id = "search-card">
+            <div class = "search">
+                <button class ="button-search" id = "search-button">QUESTIONS</button>
+                <div class = "drop_down_menu hide">
+                    <button class = "list-menu" id = "btn1" onclick="bar_graph('http://127.0.0.1:8000/avg_per_game','bar')">1. What was the average runs per game in every season?</button>
+                    <button class = "list-menu" id = "btn2" onclick="bar_graph('http://127.0.0.1:8000/runs_per_season','line')">2. What was the runs per season?</button>
+                    <button class = "list-menu" id = "btn3" onclick="bar_graph('http://127.0.0.1:8000/matches_per_season','bar')">3. How many matches where there per season?</button>
+                    <button class = "list-menu" id = "btn4" onclick="bar_graph('http://127.0.0.1:8000/umpired_most','bar')">4. Who has umpired the most</button>
+                    <button class = "list-menu" id = "btn5" onclick="bar_graph('http://127.0.0.1:8000/toss_winners','bar')">5. Maximum toss winners</button>
+                    <button class = "list-menu" id = "btn6" onclick="bar_graph('http://127.0.0.1:8000/toss_decision','pie')">6. Percentage of toss decisions?</button>
+                    <button class = "list-menu" id = "btn8" onclick="bar_graph('http://127.0.0.1:8000/win_games_by_toss','pie')">8. Result percentage after winning the toss</button>
+                    <button class = "list-menu" id = "btn9" onclick="bar_graph('http://127.0.0.1:8000/win_games_by_chasing','pie')">9. Percent of games won by the chasing team</button>
+                    <button class = "list-menu" id = "btn10" onclick="bar_graph('http://127.0.0.1:8000/tournament_winners','bar')">10. Tournament winners </button>
+                    <button class = "list-menu" id = "btn11" onclick="bar_graph('http://127.0.0.1:8000/matches_per_team','bar')">11.Number of matches per team </button>
+                    <button class = "list-menu" id = "btn12" onclick="bar_graph('http://127.0.0.1:8000/winner_frequency','bar')">12.Teams' winning frequency </button>
+                    <button class = "list-menu" id = "btn13" onclick="bar_graph('http://127.0.0.1:8000/win_percent','bar')">13.Teams' winning percentage </button>
+                    <button class = "list-menu" id = "btn14" onclick="bar_graph('http://127.0.0.1:8000/fours_per_season','bar')">30.Number of fours per season </button>
+                </div>
+            </div>
+        </div>
+            <br>
+            <script
+                src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
+            </script>
+            
+            <div class = "mychart" id = "ipl_charts"style="height: 500px;width:800px; margin:0 auto;">
+                <canvas id = "Mycanvas"></canvas>
+            </div>
+        
+    </body>
+</html>
+<script>
+    const drop_downbtn = document.querySelector(".button-search");
+    const drop_down_menu = document.querySelector(".drop_down_menu");
+    function btn_fun() {
+        drop_down_menu.classList.toggle('hide');
+    };
+    function drawing_graph(data_obj,type_graph){
+        let colors_arr = ["#3366cc","#dc3912","#ff9900","#109618","#990099","#0099c6","#dd4477","#66aa00","#b82e2e","#316395","#3366cc","#994499","#22aa99","#aaaa11","#6633cc","#e67300","#8b0707","#651067","#329262","#5574a6","#3b3eac","#b77322","#16d620","#b91383","#f4359e","#9c5935","#a9c413","#2a778d","#668d1c","#bea413","#0c5922","#743411","#3366cc","#dc3912","#ff9900","#109618","#990099","#0099c6","#aaaa11","#6633cc","#e67300","#8b0707","#651067","#329262","#5574a6","#DC143C","#808000","#FF4500","	#FF0000","#FFB300","#00CC00","#A569BD","#16A085",'#34495E'] 
+        let xaxis = Object.keys(data_obj);
+        let yaxis = Object.values(data_obj);
+        const len = xaxis.length
+            const data = {
+                    labels : xaxis,
+                    datasets : [{
+                        data : yaxis,
+                        backgroundColor: colors_arr.slice(0,len)
+                    }]
+                };
+                const config = {
+                    type: type_graph,
+                    data : data
+                };
+                const chart = new Chart(
+                    document.getElementById('Mycanvas'),
+                    config );
+            const divcontainer = document.getElementById("ipl_charts");
+            if (divcontainer.style.display = "none") {
+            divcontainer.style.display = "block"
+            } else {
+             divcontainer.style.display = "none"};
+    }
+    function bar_graph(link,type_graph) {
+        fetch(link)
+        .then(res => {
+            return res.json();
+         })
+        .then(data_obj => {
+            var graph_data = data_obj
+            drawing_graph(graph_data,type_graph)
+            console.log(data_obj)
+                })
+        .catch(error => console.log("error"))}
+drop_downbtn.addEventListener('click',btn_fun)
+
+</script>

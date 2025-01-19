@@ -1,0 +1,86 @@
+.heading{
+    text-align: center;
+    color :#080864;
+    font-size: 75px;
+    margin-top: 50px;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.body{
+    background-image: url("/home/chippu/src/webapp/Ahmedabad_stadium.jpg");
+    background-repeat: no-repeat;
+    background-size: cover; 
+}
+
+.card{
+    width: 100%;
+    max-width: 600px;
+    background-color:  #45a51c;
+    color : #fff;
+    margin : 100px auto 0;
+    border-radius: 20px;
+    padding: 40px 35px;
+    text-align: center;
+
+}
+.search{
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;   
+}
+
+.list-menu{
+    border: none;
+    background-color: rgba(255, 255, 255, 0.821);
+    font-size: 25px;
+    width: 580;
+    height: 80px ;
+    border: 2px solid black;
+    cursor: pointer;
+}
+.button-search{
+    background-color: rgba(255, 255, 255, 0.821);
+    color : rgb(0, 0, 0);
+    border: none;
+    height: 80px;
+    width: 580px;
+    font-size: 25px;
+    cursor: pointer;
+    border: 2px solid black;
+}
+.drop_down_menu a {
+    display : block;
+    text-decoration: none;
+    height: 80px;
+    width: auto;
+    font-size: 25px;
+    cursor: pointer;
+    align-items: center;
+    color: black;
+
+}
+
+.drop_down_menu {
+    background-color: none;
+    width: auto;
+    align-self: center;
+    border-radius: 30px;
+    margin : auto;
+    align-items: center;
+   
+}
+.hide{
+    display: none;
+}
+
+.mychart {
+    align-items: center;
+    background-color:antiquewhite;
+    display : none;
+    position: relative;
+    left: 0px;
+}
+.Mycanvas{
+    margin : auto;
+    align-items: center;
+}
